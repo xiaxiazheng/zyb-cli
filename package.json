@@ -1,0 +1,28 @@
+{
+  "name": "zyb-cli",
+  "version": "1.0.0",
+  "description": "写个命令行工具玩玩",
+  "main": "index.js",
+  "dependencies": {
+    "commander": "^4.0.1",
+    "inquirer": "^7.0.0",
+    "shelljs": "^0.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "zyb": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaxiazheng/zyb-cli.git"
+  },
+  "author": "zyb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaxiazheng/zyb-cli/issues"
+  },
+  "homepage": "https://github.com/xiaxiazheng/zyb-cli#readme"
+}
