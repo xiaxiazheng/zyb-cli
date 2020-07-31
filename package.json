@@ -2,18 +2,26 @@
   "name": "zyb-cli",
   "version": "1.0.0",
   "description": "写个命令行工具玩玩",
-  "main": "index.js",
+  "main": "bin/index.js",
+  "bin": {
+    "zyb": "bin/index.js"
+  },
   "dependencies": {
     "commander": "^4.0.1",
     "inquirer": "^7.0.0",
     "shelljs": "^0.8.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^2.0.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "zyb": "index.js"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,14 @@
+# /node_modules/* and /bower_components/* ignored by default
+
+# # Ignore built files except build/index.js
+# build/*
+# !build/index.js
+
+# 以 # 开头的行被当作注释，不影响忽略模式。
+# 路径是相对于 .eslintignore 的位置或当前工作目录。
+# 忽略模式同 .gitignore 规范
+# 以 ! 开头的行是否定模式，它将会重新包含一个之前被忽略的模式。
+# 除了 .eslintignore 文件中的模式，ESLint总是忽略 /node_modules/* 和 /bower_components/* 中的文件。
+
+# 让eslint不去校验打包出的build文件夹下的内容
+build/*
