@@ -21,10 +21,7 @@ program
   .alias('o')
   .description('打开对应的文件')
   .action((filePath, cmd) => {
-    console.log(`filePath: `, filePath);
-    console.log(`cmd: `, cmd);
-    // const options = cleanArgs(cmd)
-    // require('./core/open')(filePath, options)
+    require('./open')(filePath)
   });
 
 program
