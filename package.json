@@ -2,6 +2,7 @@
   "name": "@xiaxiazheng/zyb-cli",
   "version": "1.0.0",
   "description": "写个命令行工具玩玩",
+  "author": "xiaxiazheng",
   "main": "bin/index.js",
   "bin": {
     "zyb": "bin/index.js"
@@ -36,7 +37,6 @@
     "type": "git",
     "url": "git+https://github.com/xiaxiazheng/zyb-cli.git"
   },
-  "author": "zyb",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/xiaxiazheng/zyb-cli/issues"
