@@ -1,5 +1,13 @@
-const chalk = require('chalk')
 const logSymbols = require('log-symbols')
+const shell = require('shelljs')
+const chalk = require('chalk') // 用来在控制台按颜色打印
+const readline = require('readline')
+const axios = require('axios')
+const fse = require('fs-extra')
+const unzip = require('unzipper')
+const globby = require('globby')
+const cash = require('cash')
+const cp = require('child_process')
 
 function logger(fn = chalk.white) {
   return (msg) => {
@@ -12,8 +20,6 @@ function wrap(options) {
   return (...args) => {
     const msg = args.join('')
     console.log(chalk[bgColor].black(tagText), chalk[color](msg))
-
-    // return this
   }
 }
 
@@ -22,8 +28,6 @@ function symbolWrap(options) {
   return (...args) => {
     const msg = args.join('')
     console.log(logSymbols[mark], chalk[color](msg))
-
-    // return this
   }
 }
 
@@ -72,8 +76,38 @@ logger.waiting = wrap({
   icon: '⚙️'
 })
 
-module.exports = logger
+function shellExec(cmd, options = { exitIfError: true }) {
+  logger.waiting(`正在执行命令: `, cmd)
+  if (shell.exec(cmd, options).code !== 0) {
+    logger.error(`执行命令失败: `, cmd)
+    if (options.exitIfError) {
+      logger.error(`执行命令失败: `, cmd, ` 不会再继续向下运行`)
+      shell.exit(1)
+    }
+  }
+  logger.success(`执行命令成功: `, cmd)
+}
 
-// export function prettyLog(obj) {
-//   jsome(obj)
-// }
+function clearConsole(title) {
+  if (process.stdout.isTTY) {
+    const blank = '\n'.repeat(process.stdout.rows)
+    console.log(blank)
+    readline.cursorTo(process.stdout, 0, 0)
+    readline.clearScreenDown(process.stdout)
+    if (title) {
+      console.log(title)
+    }
+  }
+}
+
+module.exports = {
+  logger,
+  shellExec,
+  chalk,
+  clearConsole,
+  axios,
+  fse,
+  cash,
+  unzip,
+  globby
+}
