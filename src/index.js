@@ -5,6 +5,11 @@ const program = require("commander");
 program.version(require("../package.json").version);
 
 program
+  .command("init-script")
+  .description("初始化脚本 demo") // 添加一个描述，在 --help 中展示
+  .action(require("./init-script"));
+
+program
   .command("clone")
   .description("克隆项目") // 添加一个描述，在 --help 中展示
   .action(require("./clone"));

@@ -15,15 +15,15 @@ function deploy() {
   shell.set("-e");
 
   // 打包代码
-  console.log(shellExec(`yarn build`))
-  console.log(shell.cd("../myserver"));
-  console.log(shellExec(`git pull`));
-  console.log(shellExec(`rm -rf www`));
-  console.log(shellExec(`mkdir www`));
-  console.log(shellExec(`cp -rf ../reactblog/build/* www`));
-  console.log(shellExec(`git add --all`));
-  console.log(shellExec(`git commit -m "feat: 更新前端代码"`));
-  console.log(shellExec(`git push`));
+  logger.base(shellExec(`yarn build`))
+  logger.base(shell.cd("../myserver"));
+  logger.base(shellExec(`git pull`));
+  logger.base(shellExec(`rm -rf www`));
+  logger.base(shellExec(`mkdir www`));
+  logger.base(shellExec(`cp -rf ../reactblog/build/* www`));
+  logger.base(shellExec(`git add --all`));
+  logger.base(shellExec(`git commit -m "feat: 更新前端代码"`));
+  logger.base(shellExec(`git push`));
 
   process.exit(0);
 }

@@ -1,12 +1,12 @@
 {
-  "name": "@xiaxiazheng/zyb-cli",
-  "version": "1.0.1",
-  "description": "写个命令行工具玩玩",
-  "author": "xiaxiazheng",
-  "main": "bin/index.js",
   "bin": {
     "zyb": "bin/index.js"
   },
+  "name": "@xiaxiazheng/zyb-cli",
+  "version": "1.0.2",
+  "description": "写个命令行工具玩玩",
+  "author": "xiaxiazheng",
+  "main": "bin/index.js",
   "dependencies": {
     "@types/node": "^14.0.27",
     "axios": "^0.20.0",
