@@ -28,7 +28,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "prettier": "^2.0.5"
+    "husky": "^4.3.8",
+    "prettier": "^2.0.5",
+    "validate-commit-msg": "^2.14.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -41,5 +43,10 @@
   "bugs": {
     "url": "https://github.com/xiaxiazheng/zyb-cli/issues"
   },
-  "homepage": "https://github.com/xiaxiazheng/zyb-cli#readme"
+  "homepage": "https://github.com/xiaxiazheng/zyb-cli#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "validate-commit-msg"
+    }
+  }
 }
