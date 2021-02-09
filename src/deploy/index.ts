@@ -1,6 +1,6 @@
-const { shellExec, logger } = require("../utils/index.ts");
-const path = require("path");
-const shell = require("shelljs");
+import { shellExec, logger } from "../utils/index";
+import * as path from "path";
+import shell from "shelljs";
 
 function deploy() {
   const nowPath = path.resolve("./");
@@ -28,4 +28,4 @@ function deploy() {
   process.exit(0);
 }
 
-module.exports = deploy;
+export default deploy;

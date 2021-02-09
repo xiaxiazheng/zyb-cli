@@ -1,7 +1,7 @@
 // const program = require("commander");
-const inquirer = require("inquirer");
-const shell = require("shelljs");
-const { shellExec } = require("../utils/index.ts");
+import inquirer from "inquirer";
+import shell from "shelljs";
+import { shellExec } from "../utils/index";
 
 function clone() {
   //检查控制台是否以运行`git `开头的命令
@@ -26,7 +26,7 @@ function clone() {
         ],
       },
     ])
-    .then((answers) => {
+    .then((answers: any) => {
       const { projectName } = answers;
       console.log(`正在 clone ${projectName} 项目，请稍等`);
       const remote = `https://github.com/xiaxiazheng/${projectName}.git`;
@@ -39,4 +39,4 @@ function clone() {
     });
 }
 
-module.exports = clone;
+export default clone;

@@ -1,13 +1,13 @@
-const program = require("commander");
+import * as program from "commander";
 // const inquirer = require('inquirer');
 // const shell = require("shelljs");
 
 program.version(require("../package.json").version);
 
 program
-  .command("init-script")
-  .description("初始化脚本 demo") // 添加一个描述，在 --help 中展示
-  .action(require("./init-script"));
+  .command("init")
+  .description("初始化脚本模板") // 添加一个描述，在 --help 中展示
+  .action(require("./init"));
 
 program
   .command("clone")
@@ -23,7 +23,7 @@ program
   .command("open [filePath...]")
   .alias("o")
   .description("打开对应的文件")
-  .action((filePath, cmd) => {
+  .action((filePath: any, _cmd: any) => {
     require("./open")(filePath);
   });
 
@@ -53,3 +53,5 @@ program
 
 // 处理参数，之后的不会执行
 program.parse(process.argv);
+
+// export default program
