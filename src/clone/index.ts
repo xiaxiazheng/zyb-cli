@@ -1,6 +1,5 @@
-// const program = require("commander");
-import inquirer from "inquirer";
-import shell from "shelljs";
+import * as inquirer from "inquirer";
+import * as shell from "shelljs";
 import { shellExec } from "../utils/index";
 
 function clone() {

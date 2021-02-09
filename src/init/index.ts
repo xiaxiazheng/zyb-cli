@@ -57,4 +57,4 @@ const initScript = () => {
     .catch((err: any) => logger.error(err));
 };
 
-module.exports = initScript;
+export default initScript;

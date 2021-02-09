@@ -1,6 +1,6 @@
 import { shellExec, logger } from "../utils/index";
 import * as path from "path";
-import shell from "shelljs";
+import * as shell from "shelljs";
 
 function deploy() {
   const nowPath = path.resolve("./");
