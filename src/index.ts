@@ -56,4 +56,16 @@ program
 // 处理参数，之后的不会执行
 program.parse(process.argv);
 
+// 捕获错误
+process.on('uncaughtException', error => handleUncaughtException(error, {}));
+process.on('unhandledRejection', error => handleUnhandledRejection(error, {}));
+
+const handleUncaughtException = (_error: Error, _options: {}) => {
+  process.exit()
+}
+
+const handleUnhandledRejection = (_error: {} | null | undefined, _options: {}) => {
+  process.exit()
+}
+
 export default {}
