@@ -15,7 +15,7 @@
     "publish": "npm publish --access=public"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "cash": "^0.8.0",
     "commander": "^4.0.1",
     "fs-extra": "^9.0.1",
