@@ -1,9 +1,9 @@
 {
   "bin": {
-    "zybtest": "bin/index.js"
+    "zyb": "bin/index.js"
   },
   "name": "@xiaxiazheng/zyb-cli",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "写个命令行工具玩玩",
   "author": "xiaxiazheng",
   "main": "dist",
