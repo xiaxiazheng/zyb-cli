@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const chalk_1 = require("chalk"); // 用来在控制台按颜色打印
+const chalk = require("chalk"); // 用来在控制台按颜色打印
 const logSymbols = require("log-symbols"); // 为各种日志级别提供着色的符号
-function logger(fn = chalk_1.default.white) {
+function logger(fn = chalk.white) {
     return (msg) => {
         console.log(fn(msg));
     };
@@ -11,14 +11,14 @@ function wrap(options) {
     const { color, bgColor, tagText, icon } = options;
     return (...args) => {
         const msg = args.join('');
-        console.log(icon, chalk_1.default[bgColor].black(tagText), chalk_1.default[color](msg));
+        console.log(icon, chalk[bgColor].black(tagText), chalk[color](msg));
     };
 }
 function symbolWrap(options) {
     const { color, mark, icon } = options;
     return (...args) => {
         const msg = args.join('');
-        console.log(icon, logSymbols[mark], chalk_1.default[color](msg));
+        console.log(icon, logSymbols[mark], chalk[color](msg));
     };
 }
 logger.base = wrap({

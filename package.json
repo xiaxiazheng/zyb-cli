@@ -11,7 +11,7 @@
     "build": "tsc --watch",
     "showWarning": "node --trace-warnings bin/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "npm publish --access=public"
+    "publish": "nrm use npm & npm publish --access=public & nrm use taobao"
   },
   "dependencies": {
     "axios": "^0.21.1",

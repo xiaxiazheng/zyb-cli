@@ -24,7 +24,7 @@ function deploy() {
     ])
         .then((answers) => {
         const { isBuild } = answers;
-        if (isBuild === 'Y' || isBuild === 'y') {
+        if (isBuild === "Y" || isBuild === "y") {
             index_1.logger.base(index_1.shellExec(`yarn build`));
         }
         index_1.logger.base(shell.cd("../blogserver"));

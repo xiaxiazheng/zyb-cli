@@ -1,4 +1,4 @@
-import chalk from 'chalk' // 用来在控制台按颜色打印
+import * as chalk from 'chalk' // 用来在控制台按颜色打印
 import * as logSymbols from 'log-symbols' // 为各种日志级别提供着色的符号
 
 function logger(fn = chalk.white) {

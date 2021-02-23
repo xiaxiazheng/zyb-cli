@@ -27,7 +27,7 @@ function deploy() {
     .then((answers: any) => {
       const { isBuild } = answers;
 
-      if (isBuild === 'Y' || isBuild === 'y') {
+      if (isBuild === "Y" || isBuild === "y") {
         logger.base(shellExec(`yarn build`));
       }
 
@@ -43,8 +43,8 @@ function deploy() {
       process.exit(0);
     })
     .catch((err: any) => {
-      logger.error(err)
-      
+      logger.error(err);
+
       process.exit(0);
     });
 }
