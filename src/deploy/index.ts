@@ -1,6 +1,7 @@
 import { shellExec, logger } from "../utils/index";
 import * as path from "path";
 import * as shell from "shelljs";
+import * as inquirer from "inquirer";
 
 function deploy() {
   const nowPath = path.resolve("./");
@@ -15,17 +16,37 @@ function deploy() {
   shell.set("-e");
 
   // 打包代码
-  logger.base(shellExec(`yarn build`))
-  logger.base(shell.cd("../myserver"));
-  logger.base(shellExec(`git pull`));
-  logger.base(shellExec(`rm -rf www`));
-  logger.base(shellExec(`mkdir www`));
-  logger.base(shellExec(`cp -rf ../reactblog/build/* www`));
-  logger.base(shellExec(`git add --all`));
-  logger.base(shellExec(`git commit -m "feat: 更新前端代码"`));
-  logger.base(shellExec(`git push`));
+  inquirer
+    .prompt([
+      {
+        type: "input", // 获取用户输入的字符串
+        name: "isBuild", // 为用户的输入设置变量名
+        message: "是否需要打包？(Y/N)",
+      },
+    ])
+    .then((answers: any) => {
+      const { isBuild } = answers;
 
-  process.exit(0);
+      if (isBuild === 'Y' || isBuild === 'y') {
+        logger.base(shellExec(`yarn build`));
+      }
+
+      logger.base(shell.cd("../blogserver"));
+      logger.base(shellExec(`git pull`));
+      logger.base(shellExec(`rm -rf www`));
+      logger.base(shellExec(`mkdir www`));
+      logger.base(shellExec(`cp -rf ../reactblog/build/* www`));
+      logger.base(shellExec(`git add --all`));
+      logger.base(shellExec(`git commit -m "feat: 更新前端代码"`));
+      logger.base(shellExec(`git push`));
+
+      process.exit(0);
+    })
+    .catch((err: any) => {
+      logger.error(err)
+      
+      process.exit(0);
+    });
 }
 
 export default deploy;

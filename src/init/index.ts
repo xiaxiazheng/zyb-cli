@@ -52,9 +52,13 @@ const initScript = () => {
       shellExec(`code .`);
       logger.success(`项目打开成功`);
 
-      process.exit();
+      process.exit(0);
     })
-    .catch((err: any) => logger.error(err));
+    .catch((err: any) => {
+      logger.error(err)
+    
+      process.exit(0);
+    });
 };
 
 export default initScript;
