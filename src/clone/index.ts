@@ -1,6 +1,6 @@
 import * as inquirer from "inquirer";
 import * as shell from "shelljs";
-import { shellExec } from "../utils/index";
+import { logger, shellExec } from "../utils/index";
 
 function clone() {
   //检查控制台是否以运行`git `开头的命令
@@ -34,7 +34,8 @@ function clone() {
       shellExec(`yarn`);
       shellExec(`code .`);
 
-      console.log("done");
+      logger.base("done");
+      process.exit()
     });
 }
 
