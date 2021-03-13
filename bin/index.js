@@ -2,6 +2,6 @@
 'use strict'
 
 // 导入 zyb 命令
-const zyb = require('../dist')
+const zyb = require('../build')
 
 module.exports = zyb

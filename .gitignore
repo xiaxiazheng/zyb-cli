@@ -29,7 +29,7 @@ selenium-debug.log
 /temp
 
 # production
-/build
+# /build
 
 # misc
 .DS_Store
