@@ -18,7 +18,7 @@ function clone() {
         name: "projectName", // 指定输入的变量的变量名
         choices: [
           "reactblog",
-          "myserver",
+          "blogserver",
           "static-server",
           "maoweapp",
           "zyb-cli",

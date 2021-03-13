@@ -1,25 +1,25 @@
-import * as chalk from 'chalk' // 用来在控制台按颜色打印
-import * as logSymbols from 'log-symbols' // 为各种日志级别提供着色的符号
+const chalk = require('chalk') // 用来在控制台按颜色打印
+const logSymbols = require('log-symbols') // 为各种日志级别提供着色的符号
 
 function logger(fn = chalk.white) {
-  return (msg: string) => {
+  return (msg) => {
     console.log(fn(msg))
   }
 }
 
-function wrap(options: { color: string; bgColor: string; tagText: string; icon: string }) {
+function wrap(options) {
   const { color, bgColor, tagText, icon } = options
-  return (...args: any[]) => {
+  return (...args) => {
     const msg = args.join('')
     console.log(icon, chalk[bgColor].black(tagText), chalk[color](msg))
   }
 }
 
-function symbolWrap(options: { color: string; mark: string; icon: string }) {
+function symbolWrap(options) {
   const { color, mark, icon } = options
-  return (...args: any[]) => {
+  return (...args) => {
     const msg = args.join('')
-    console.log(icon, (logSymbols as any)[mark], chalk[color](msg))
+    console.log(icon, logSymbols[mark], chalk[color](msg))
   }
 }
 
@@ -68,4 +68,4 @@ logger.waiting = wrap({
   icon: '⚙️'
 })
 
-export default logger
+module.exports = logger
