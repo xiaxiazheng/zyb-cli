@@ -16,7 +16,7 @@ function deploy() {
 
   // 打包代码
   logger.base(shellExec(`yarn build`))
-  logger.base(shell.cd("../myserver"));
+  logger.base(shell.cd("../blogserver"));
   logger.base(shellExec(`git pull`));
   logger.base(shellExec(`rm -rf www`));
   logger.base(shellExec(`mkdir www`));
