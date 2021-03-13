@@ -22,3 +22,6 @@ npm link 和 npm i 本npm包 -g 都会占用 C:\Users\XJY\AppData\Roaming\npm\no
 具体还是在这看看版本就知道有没发上去了
 https://www.npmjs.com/package/@xiaxiazheng/zyb-cli
 
+#### template 里的 node_modules
+虽然 github 仓库里没有这个 node_modules，但是 npm publish 的时候貌似把整个项目带 node_modules 都发布上去了呃
+所以导致 zyb init 命令把 template/node_modules 也复制了一遍，所以还是要删掉
