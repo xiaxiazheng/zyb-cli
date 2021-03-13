@@ -8,7 +8,8 @@
   "author": "xiaxiazheng",
   "main": "build",
   "scripts": {
-    "build": "tsc --watch",
+    "build": "tsc",
+    "watch": "tsc --watch",
     "showWarning": "node --trace-warnings bin/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "publish": "nrm use npm && npm publish --access=public && nrm use taobao"
