@@ -5,6 +5,7 @@ const init_1 = require("./init");
 const clone_1 = require("./clone");
 const deploy_1 = require("./deploy");
 const open_1 = require("./open");
+const listen_1 = require("./listen");
 program.version(require("../package.json").version);
 program
     .command("clone")
@@ -25,6 +26,7 @@ program
     .action((filePath, _cmd) => {
     open_1.default(filePath);
 });
+program.command("listen").description("监听本地端口").action(listen_1.default);
 // program
 //   .command('proxy')
 //   .description('对 npm 和 git 进行代理')
@@ -50,8 +52,8 @@ program
 // 处理参数，之后的不会执行
 program.parse(process.argv);
 // 捕获错误
-process.on('uncaughtException', error => handleUncaughtException(error, {}));
-process.on('unhandledRejection', error => handleUnhandledRejection(error, {}));
+process.on("uncaughtException", (error) => handleUncaughtException(error, {}));
+process.on("unhandledRejection", (error) => handleUnhandledRejection(error, {}));
 const handleUncaughtException = (_error, _options) => {
     process.exit();
 };

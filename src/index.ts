@@ -1,8 +1,9 @@
 import * as program from "commander";
-import init from './init'
-import clone from './clone'
-import deploy from './deploy'
-import open from './open'
+import init from "./init";
+import clone from "./clone";
+import deploy from "./deploy";
+import open from "./open";
+import listen from "./listen";
 
 program.version(require("../package.json").version);
 
@@ -28,6 +29,8 @@ program
   .action((filePath: any, _cmd: any) => {
     open(filePath);
   });
+
+program.command("listen").description("监听本地端口").action(listen);
 
 // program
 //   .command('proxy')
@@ -57,15 +60,20 @@ program
 program.parse(process.argv);
 
 // 捕获错误
-process.on('uncaughtException', error => handleUncaughtException(error, {}));
-process.on('unhandledRejection', error => handleUnhandledRejection(error, {}));
+process.on("uncaughtException", (error) => handleUncaughtException(error, {}));
+process.on("unhandledRejection", (error) =>
+  handleUnhandledRejection(error, {})
+);
 
 const handleUncaughtException = (_error: Error, _options: {}) => {
-  process.exit()
-}
+  process.exit();
+};
 
-const handleUnhandledRejection = (_error: {} | null | undefined, _options: {}) => {
-  process.exit()
-}
+const handleUnhandledRejection = (
+  _error: {} | null | undefined,
+  _options: {}
+) => {
+  process.exit();
+};
 
-export default {}
+export default {};
