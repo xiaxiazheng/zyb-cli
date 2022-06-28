@@ -1,6 +1,6 @@
 {
   "bin": {
-    "zybtest": "bin/index.js"
+    "zyb": "bin/index.js"
   },
   "name": "@xiaxiazheng/zyb-cli",
   "version": "1.1.3",
