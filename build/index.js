@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const program = require("commander");
-const init_1 = require("./init");
+const create_1 = require("./create");
 const clone_1 = require("./clone");
 const deploy_1 = require("./deploy");
 const open_1 = require("./open");
@@ -9,12 +9,12 @@ const listen_1 = require("./listen");
 program.version(require("../package.json").version);
 program
     .command("clone")
-    .description("克隆项目") // 添加一个描述，在 --help 中展示
+    .description("克隆已有项目") // 添加一个描述，在 --help 中展示
     .action(clone_1.default);
 program
-    .command("init")
-    .description("初始化脚本模板") // 添加一个描述，在 --help 中展示
-    .action(init_1.default);
+    .command("create")
+    .description("新建项目") // 添加一个描述，在 --help 中展示
+    .action(create_1.default);
 program
     .command("deploy")
     .description("打包前端代码并更新，发到 server 去") // 添加一个描述，在 --help 中展示

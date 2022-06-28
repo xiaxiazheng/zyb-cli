@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const inquirer = require("inquirer");
 const shell = require("shelljs");
 const index_1 = require("../utils/index");
-function clone() {
+function create() {
     //检查控制台是否可以运行`git `开头的命令
     if (!shell.which("git")) {
         //在控制台输出内容
@@ -14,15 +14,9 @@ function clone() {
         .prompt([
         {
             type: "list",
-            message: "请选择你要 clone 到本地的项目",
+            message: "请选择你要新建的项目类型",
             name: "projectName",
-            choices: [
-                "reactblog",
-                "blogserver",
-                "static-server",
-                "maoweapp",
-                "zyb-cli",
-            ],
+            choices: ["koa-template", "rollup-template"],
         },
     ])
         .then((answers) => {
@@ -37,4 +31,4 @@ function clone() {
         process.exit();
     });
 }
-exports.default = clone;
+exports.default = create;

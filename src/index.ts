@@ -1,5 +1,5 @@
 import * as program from "commander";
-import init from "./init";
+import create from "./create";
 import clone from "./clone";
 import deploy from "./deploy";
 import open from "./open";
@@ -9,13 +9,13 @@ program.version(require("../package.json").version);
 
 program
   .command("clone")
-  .description("克隆项目") // 添加一个描述，在 --help 中展示
+  .description("克隆已有项目") // 添加一个描述，在 --help 中展示
   .action(clone);
 
 program
-  .command("init")
-  .description("初始化脚本模板") // 添加一个描述，在 --help 中展示
-  .action(init);
+  .command("create")
+  .description("选择模板新建项目") // 添加一个描述，在 --help 中展示
+  .action(create);
 
 program
   .command("deploy")

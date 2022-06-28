@@ -1,2 +1,2 @@
-declare const initScript: () => void;
-export default initScript;
+declare function clone(): void;
+export default clone;

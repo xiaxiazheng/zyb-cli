@@ -35,7 +35,7 @@ function clone() {
       shellExec(`code .`);
 
       logger.base("done");
-      process.exit()
+      process.exit();
     });
 }
 

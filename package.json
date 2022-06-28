@@ -23,7 +23,7 @@
     "global": "^4.4.0",
     "globby": "^11.0.1",
     "inquirer": "^7.0.0",
-    "jsome": "^2.5.0",
+    "jsome": "^2.3.26",
     "log-symbols": "^4.0.0",
     "open": "^7.1.0",
     "shelljs": "^0.8.4",
@@ -41,7 +41,7 @@
     "husky": "^4.3.8",
     "prettier": "^2.0.5",
     "typescript": "^4.1.3",
-    "validate-commit-msg": "^2.14.0"
+    "validate-commit-msg": "^1.1.3"
   },
   "repository": {
     "type": "git",
