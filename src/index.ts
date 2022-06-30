@@ -33,7 +33,7 @@ program
 
 program.command("listen").description("监听本地端口").action(listen);
 
-program.command("analysis").description("监听本地端口").action(analysis);
+program.command("analysis").description("分析本地文件夹内容，并整理").action(analysis);
 
 // program
 //   .command('proxy')

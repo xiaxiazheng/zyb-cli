@@ -28,7 +28,7 @@ program
     open_1.default(filePath);
 });
 program.command("listen").description("监听本地端口").action(listen_1.default);
-program.command("analysis").description("监听本地端口").action(analysis_1.default);
+program.command("analysis").description("分析本地文件夹内容，并整理").action(analysis_1.default);
 // program
 //   .command('proxy')
 //   .description('对 npm 和 git 进行代理')
