@@ -1,2 +1,2 @@
-declare const analysis: () => Promise<never>;
+declare const analysis: () => Promise<void>;
 export default analysis;

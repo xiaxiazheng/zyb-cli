@@ -1,15 +1,9 @@
-import {
-  Stats,
-  access,
-  constants,
-  writeFileSync,
-  appendFileSync,
-  mkdirSync,
-  copyFileSync,
-} from "fs";
+import { access, constants, writeFileSync, appendFileSync } from "fs";
 import { resolve as pathResolve } from "path";
 import * as dayjs from "dayjs";
-import walkDir, { FileType } from "../utils/walkDir";
+import walkDir from "../utils/walkDir";
+import * as inquirer from "inquirer";
+import SplitByMonth from "./split-by-month";
 
 const isFileExist = (file: string) => {
   return new Promise<boolean>((resolve) => {
@@ -35,30 +29,26 @@ const analysis = async () => {
     filterDirList: [".git", "node_modules", "build"],
   });
 
-  //   console.log("fileList", fileList);
+  console.log("fileList", fileList);
 
-  const map: {
-    [key in string]: FileType[];
-  } = {};
-  fileList.forEach((item) => {
-    const time = dayjs(item.stat.birthtime).format("YYYY-MM");
-    if (typeof map[time] === "undefined") {
-      map[time] = [item];
-    } else {
-      map[time].push(item);
-    }
-  });
-  console.log("map", map);
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "请选择下一步操作",
+        name: "choice", // 指定输入的变量的变量名
+        choices: ["按月份分类文件", "退出"],
+      },
+    ])
+    .then((answers: any) => {
+      const { choice } = answers;
 
-  mkdirSync("./origin");
-  Object.keys(map).forEach((item) => {
-    mkdirSync(`./origin/${item}`);
-    map[item].forEach((file) => {
-      copyFileSync(file.path, `./origin/${item}/${file.name}`);
+      if (choice === "按月份分类文件") {
+        SplitByMonth(fileList);
+      } else {
+        process.exit();
+      }
     });
-  });
-
-  process.exit();
 };
 
 export default analysis;

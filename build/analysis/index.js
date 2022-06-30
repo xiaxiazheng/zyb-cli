@@ -4,6 +4,8 @@ const fs_1 = require("fs");
 const path_1 = require("path");
 const dayjs = require("dayjs");
 const walkDir_1 = require("../utils/walkDir");
+const inquirer = require("inquirer");
+const split_by_month_1 = require("./split-by-month");
 const isFileExist = (file) => {
     return new Promise((resolve) => {
         fs_1.access(file, fs_1.constants.F_OK, (err) => {
@@ -25,25 +27,24 @@ const analysis = async () => {
         },
         filterDirList: [".git", "node_modules", "build"],
     });
-    //   console.log("fileList", fileList);
-    const map = {};
-    fileList.forEach((item) => {
-        const time = dayjs(item.stat.birthtime).format("YYYY-MM");
-        if (typeof map[time] === "undefined") {
-            map[time] = [item];
+    console.log("fileList", fileList);
+    inquirer
+        .prompt([
+        {
+            type: "list",
+            message: "请选择下一步操作",
+            name: "choice",
+            choices: ["按月份分类文件", "退出"],
+        },
+    ])
+        .then((answers) => {
+        const { choice } = answers;
+        if (choice === "按月份分类文件") {
+            split_by_month_1.default(fileList);
         }
         else {
-            map[time].push(item);
+            process.exit();
         }
     });
-    console.log("map", map);
-    fs_1.mkdirSync("./origin");
-    Object.keys(map).forEach((item) => {
-        fs_1.mkdirSync(`./origin/${item}`);
-        map[item].forEach((file) => {
-            fs_1.copyFileSync(file.path, `./origin/${item}/${file.name}`);
-        });
-    });
-    process.exit();
 };
 exports.default = analysis;
