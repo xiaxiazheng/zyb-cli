@@ -1,10 +1,9 @@
-.eslintignore,/Users/bytedance/Desktop/myproject/zyb-cli,/Users/bytedance/Desktop/myproject/zyb-cli/.eslintignore,2022-06-23 14:16:57
-	.eslintrc.js,/Users/bytedance/Desktop/myproject/zyb-cli,/Users/bytedance/Desktop/myproject/zyb-cli/.eslintrc.js,2022-06-23 14:16:57
-	.gitignore,/Users/bytedance/Desktop/myproject/zyb-cli,/Users/bytedance/Desktop/myproject/zyb-cli/.gitignore,2022-06-23 14:16:57
-	.vcmrc,/Users/bytedance/Desktop/myproject/zyb-cli,/Users/bytedance/Desktop/myproject/zyb-cli/.vcmrc,2022-06-23 14:16:57
-	README.md,/Users/bytedance/Desktop/myproject/zyb-cli,/Users/bytedance/Desktop/myproject/zyb-cli/README.md,2022-06-23 14:16:57
-	package-lock.json,/Users/bytedance/Desktop/myproject/zyb-cli,/Users/bytedance/Desktop/myproject/zyb-cli/package-lock.json,2022-06-28 11:40:51
-	package.json,/Users/bytedance/Desktop/myproject/zyb-cli,/Users/bytedance/Desktop/myproject/zyb-cli/package.json,2022-06-28 11:40:46
-	report.csv,/Users/bytedance/Desktop/myproject/zyb-cli,/Users/bytedance/Desktop/myproject/zyb-cli/report.csv,2022-06-29 17:53:32
-	tsconfig.json,/Users/bytedance/Desktop/myproject/zyb-cli,/Users/bytedance/Desktop/myproject/zyb-cli/tsconfig.json,2022-06-23 14:16:57
-	
+.eslintignore,/Users/bytedance/Desktop/myproject/zyb-cli/.eslintignore,2022-06-23 14:16:57
+.eslintrc.js,/Users/bytedance/Desktop/myproject/zyb-cli/.eslintrc.js,2022-06-23 14:16:57
+.gitignore,/Users/bytedance/Desktop/myproject/zyb-cli/.gitignore,2022-06-23 14:16:57
+.vcmrc,/Users/bytedance/Desktop/myproject/zyb-cli/.vcmrc,2022-06-23 14:16:57
+README.md,/Users/bytedance/Desktop/myproject/zyb-cli/README.md,2022-06-23 14:16:57
+package-lock.json,/Users/bytedance/Desktop/myproject/zyb-cli/package-lock.json,2022-06-28 11:40:51
+package.json,/Users/bytedance/Desktop/myproject/zyb-cli/package.json,2022-06-28 11:40:46
+report.csv,/Users/bytedance/Desktop/myproject/zyb-cli/report.csv,2022-06-30 15:27:12
+tsconfig.json,/Users/bytedance/Desktop/myproject/zyb-cli/tsconfig.json,2022-06-23 14:16:57

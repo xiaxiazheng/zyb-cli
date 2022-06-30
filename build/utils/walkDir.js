@@ -17,14 +17,20 @@ const walkDir = async (params) => {
                 file.forEach((name) => {
                     const filePath = path_1.resolve(dir, name);
                     const stat = fs_1.statSync(filePath);
+                    const obj = {
+                        name,
+                        dir,
+                        path: filePath,
+                        stat,
+                    };
                     // 处理文件
                     if (stat.isFile() && !filterFileList.includes(name)) {
-                        fileList.push(filePath);
-                        handleFile && handleFile(stat, name, dir, filePath);
+                        fileList.push(obj);
+                        handleFile && handleFile(obj);
                     }
                     if (stat.isDirectory() && !filterDirList.includes(name)) {
-                        folderList.push(filePath);
-                        handleDir && handleDir(stat, name, dir, filePath);
+                        folderList.push(obj);
+                        handleDir && handleDir(obj);
                     }
                 });
                 resolve();

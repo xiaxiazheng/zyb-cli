@@ -9,23 +9,20 @@ interface IParams {
   dir?: string; // 要便利的文件夹路径
   filterFileList?: string[];
   filterDirList?: string[];
-  handleFile?: (
-    stat: Stats,
-    name: string,
-    dir: string,
-    filePath: string
-  ) => void;
-  handleDir?: (
-    stat: Stats,
-    name: string,
-    dir: string,
-    filePath: string
-  ) => void;
+  handleFile?: (obj: FileType) => void;
+  handleDir?: (obj: FileType) => void;
 }
 
+export type FileType = {
+  name: string;
+  dir: string;
+  path: string;
+  stat: Stats;
+};
+
 interface IRes {
-  fileList: string[];
-  folderList: string[];
+  fileList: FileType[];
+  folderList: FileType[];
 }
 
 const walkDir = async (params: IParams): Promise<IRes> => {
@@ -38,8 +35,8 @@ const walkDir = async (params: IParams): Promise<IRes> => {
   } = params;
   const curFolderList: string[] = [dir];
 
-  const folderList: string[] = [];
-  const fileList: string[] = [];
+  const folderList: FileType[] = [];
+  const fileList: FileType[] = [];
 
   const walk = (dir: string) => {
     return new Promise<void>((resolve, _reject) => {
@@ -47,14 +44,20 @@ const walkDir = async (params: IParams): Promise<IRes> => {
         file.forEach((name) => {
           const filePath = pathResolve(dir, name);
           const stat = statSync(filePath);
+          const obj = {
+            name,
+            dir,
+            path: filePath,
+            stat,
+          };
           // 处理文件
           if (stat.isFile() && !filterFileList.includes(name)) {
-            fileList.push(filePath);
-            handleFile && handleFile(stat, name, dir, filePath);
+            fileList.push(obj);
+            handleFile && handleFile(obj);
           }
           if (stat.isDirectory() && !filterDirList.includes(name)) {
-            folderList.push(filePath);
-            handleDir && handleDir(stat, name, dir, filePath);
+            folderList.push(obj);
+            handleDir && handleDir(obj);
           }
         });
         resolve();

@@ -8,12 +8,18 @@ interface IParams {
     dir?: string;
     filterFileList?: string[];
     filterDirList?: string[];
-    handleFile?: (stat: Stats, name: string, dir: string, filePath: string) => void;
-    handleDir?: (stat: Stats, name: string, dir: string, filePath: string) => void;
+    handleFile?: (obj: FileType) => void;
+    handleDir?: (obj: FileType) => void;
 }
+export declare type FileType = {
+    name: string;
+    dir: string;
+    path: string;
+    stat: Stats;
+};
 interface IRes {
-    fileList: string[];
-    folderList: string[];
+    fileList: FileType[];
+    folderList: FileType[];
 }
 declare const walkDir: (params: IParams) => Promise<IRes>;
 export default walkDir;
