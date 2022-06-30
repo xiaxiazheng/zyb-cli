@@ -6,7 +6,7 @@ const templateObj = {
   "cli-template": "cli 命令行工具模板",
   "koa-template": "koa 后端接口服务模板",
   "rollup-template": "react 组件库 or npm 工具库模板",
-  react: "react 前端项目模板",
+  "react": "react 前端项目模板",
 };
 
 function create() {
@@ -23,7 +23,7 @@ function create() {
         type: "list",
         message: "请选择你要新建的项目类型",
         name: "projectName", // 指定输入的变量的变量名
-        choices: ["koa-template", "rollup-template"],
+        choices: Object.values(templateObj),
       },
     ])
     .then((answers: any) => {

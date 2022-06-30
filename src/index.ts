@@ -4,6 +4,7 @@ import clone from "./clone";
 import deploy from "./deploy";
 import open from "./open";
 import listen from "./listen";
+import analysis from "./analysis";
 
 program.version(require("../package.json").version);
 
@@ -31,6 +32,8 @@ program
   });
 
 program.command("listen").description("监听本地端口").action(listen);
+
+program.command("analysis").description("监听本地端口").action(analysis);
 
 // program
 //   .command('proxy')

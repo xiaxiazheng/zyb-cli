@@ -6,6 +6,7 @@ const clone_1 = require("./clone");
 const deploy_1 = require("./deploy");
 const open_1 = require("./open");
 const listen_1 = require("./listen");
+const analysis_1 = require("./analysis");
 program.version(require("../package.json").version);
 program
     .command("clone")
@@ -13,7 +14,7 @@ program
     .action(clone_1.default);
 program
     .command("create")
-    .description("新建项目") // 添加一个描述，在 --help 中展示
+    .description("选择模板新建项目") // 添加一个描述，在 --help 中展示
     .action(create_1.default);
 program
     .command("deploy")
@@ -27,6 +28,7 @@ program
     open_1.default(filePath);
 });
 program.command("listen").description("监听本地端口").action(listen_1.default);
+program.command("analysis").description("监听本地端口").action(analysis_1.default);
 // program
 //   .command('proxy')
 //   .description('对 npm 和 git 进行代理')
