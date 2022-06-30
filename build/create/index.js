@@ -35,10 +35,10 @@ function create() {
             console.log("请跑这个命令: npx create-react-app ts-react --template=typescript");
         }
         else {
-            console.log(`正在 clone ${projectName} 项目，请稍等`);
-            const remote = `https://github.com/xiaxiazheng/${projectName}.git`;
+            console.log(`正在 clone ${templateObjMap[projectName]} 项目，请稍等`);
+            const remote = `https://github.com/xiaxiazheng/${templateObjMap[projectName]}.git`;
             index_1.shellExec(`git clone ${remote} --depth=1`);
-            shell.cd(`${projectName}`);
+            shell.cd(`${templateObjMap[projectName]}`);
             index_1.shellExec(`npm i`);
             index_1.shellExec(`code .`);
             index_1.logger.base("done");

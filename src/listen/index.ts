@@ -3,10 +3,16 @@ import { readFile } from "fs";
 import * as path from "path";
 import { resolve } from "path";
 import { shellExec } from "../utils";
+import isFileExist from "../utils/isFileExist";
 
-const listen = () => {
+const listen = async () => {
   const app = express();
   const router = express.Router();
+
+  if (!(await isFileExist("./report.csv"))) {
+    console.log("运行错误，要先运行 zyb analysis 生成 report.csv");
+    process.exit();
+  }
 
   // 调试：curl localhost:3000/api/table
   router.get("/table", (_req, res) => {

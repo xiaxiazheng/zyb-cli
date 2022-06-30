@@ -4,14 +4,8 @@ import * as dayjs from "dayjs";
 import walkDir from "../utils/walkDir";
 import * as inquirer from "inquirer";
 import SplitByMonth from "./split-by-month";
-
-const isFileExist = (file: string) => {
-  return new Promise<boolean>((resolve) => {
-    access(file, constants.F_OK, (err) => {
-      err ? resolve(false) : resolve(true);
-    });
-  });
-};
+import isFileExist from "../utils/isFileExist";
+import listen from "../listen";
 
 const analysis = async () => {
   const reportPath = pathResolve(process.cwd(), "report.csv");
@@ -37,7 +31,7 @@ const analysis = async () => {
         type: "list",
         message: "请选择下一步操作",
         name: "choice", // 指定输入的变量的变量名
-        choices: ["按月份分类文件", "退出"],
+        choices: ["按月份分类文件", "网页查看分类结果", "退出"],
       },
     ])
     .then((answers: any) => {
@@ -45,6 +39,8 @@ const analysis = async () => {
 
       if (choice === "按月份分类文件") {
         SplitByMonth(fileList);
+      } else if (choice === "网页查看分类结果") {
+        listen();
       } else {
         process.exit();
       }

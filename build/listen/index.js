@@ -4,9 +4,14 @@ const express = require("express");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const utils_1 = require("../utils");
-const listen = () => {
+const isFileExist_1 = require("../utils/isFileExist");
+const listen = async () => {
     const app = express();
     const router = express.Router();
+    if (!(await isFileExist_1.default("./report.csv"))) {
+        console.log("运行错误，要先运行 zyb analysis 生成 report.csv");
+        process.exit();
+    }
     // 调试：curl localhost:3000/api/table
     router.get("/table", (_req, res) => {
         // 读取小文件
