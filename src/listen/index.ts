@@ -35,7 +35,7 @@ const listen = async () => {
 
   app.use("/api", router);
 
-  app.use(express.static("admin-image/build")); // 监听 index.html
+  app.use(express.static("public")); // 监听 index.html
   app.use("/static", express.static("static")); // 监听新生成的静态资源目录
 
   const server = app.listen(3000, () => {

@@ -12,7 +12,8 @@
     "build": "tsc",
     "showWarning": "node --trace-warnings bin/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "nrm use npm && npm publish --access=public && nrm use taobao"
+    "publish": "nrm use npm && npm publish --access=public && nrm use taobao",
+    "fe": "cd ../ && git clone https://github.com/xiaxiazheng/admin-image.git"
   },
   "dependencies": {
     "axios": "^0.21.1",
