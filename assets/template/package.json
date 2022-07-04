@@ -16,7 +16,7 @@
     "cron": "^1.8.2",
     "inquirer": "^7.3.3",
     "log-symbols": "^4.0.0",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "pkg": "^4.4.9"
