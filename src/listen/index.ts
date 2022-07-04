@@ -4,9 +4,11 @@ import * as path from "path";
 import { resolve } from "path";
 import { shellExec } from "../utils";
 import isFileExist from "../utils/isFileExist";
+import * as cors from "cors";
 
 const listen = async () => {
   const app = express();
+  app.use(cors());
   const router = express.Router();
 
   if (!(await isFileExist("./report.csv"))) {
@@ -33,14 +35,15 @@ const listen = async () => {
 
   app.use("/api", router);
 
-  app.use(express.static("public"));
+  app.use(express.static("admin-image/build")); // 监听 index.html
+  app.use("/static", express.static("static")); // 监听新生成的静态资源目录
 
   const server = app.listen(3000, () => {
     console.log("listen 3000");
   });
 
   // 在浏览器打开页面
-  shellExec("open ./public/index.html");
+  shellExec("open http://localhost:3000");
 
   process.on("SIGTERM", () => {
     // 还是无法退出

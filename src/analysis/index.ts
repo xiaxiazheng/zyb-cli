@@ -9,9 +9,7 @@ import listen from "../listen";
 
 const analysis = async () => {
   const reportPath = pathResolve(process.cwd(), "report.csv");
-  if (!(await isFileExist(reportPath))) {
-    writeFileSync(reportPath, "", "utf-8"); // 新建文件
-  }
+  writeFileSync(reportPath, "", "utf-8"); // 新建文件 或 覆盖原有文件为空
 
   // 遍历文件夹，获取所有文件
   const { fileList } = await walkDir({
@@ -38,7 +36,7 @@ const analysis = async () => {
       const { choice } = answers;
 
       if (choice === "按月份分类文件") {
-        SplitByMonth(fileList);
+        SplitByMonth(fileList, reportPath);
       } else if (choice === "网页查看分类结果") {
         listen();
       } else {

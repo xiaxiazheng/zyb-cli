@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
 const dayjs = require("dayjs");
-const SplitByMonth = (fileList) => {
+const SplitByMonth = (fileList, reportPath) => {
     //   按月份分类文件
     const map = {};
     fileList.forEach((item) => {
@@ -14,14 +14,22 @@ const SplitByMonth = (fileList) => {
             map[time].push(item);
         }
     });
-    console.log("map", map);
+    // 覆盖报告文件
+    fs_1.writeFileSync(reportPath, "", "utf-8");
     //   创建新文件夹，按月份分类复制图片
-    const newDir = "./origin";
+    const newDir = "./static";
     fs_1.mkdirSync(`${newDir}`);
     Object.keys(map).forEach((item) => {
         fs_1.mkdirSync(`${newDir}/${item}`);
         map[item].forEach((file) => {
-            fs_1.copyFileSync(file.path, `${newDir}/${item}/${file.name}`);
+            // 新的静态资源的地址
+            const staticPath = `${newDir}/${item}/${file.name}`;
+            // 复制文件到新的静态资源文件夹
+            fs_1.copyFileSync(file.path, staticPath);
+            // 分好类
+            const { stat, name, dir: _dir, path } = file;
+            const time = dayjs(stat.birthtime).format("YYYY-MM-DD HH:mm:ss");
+            fs_1.appendFileSync(reportPath, `${name},${staticPath},${path},${time}\n`);
         });
     });
     process.exit();

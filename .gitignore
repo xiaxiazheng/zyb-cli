@@ -1,11 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# 前端代码文件夹
+admin-image
+# 生成的静态资源报告
+report.csv
+# 生成的静态资源文件夹
+static
+
 # dependencies
 node_modules/
 /.pnp
 .pnp.js
-
-fe
 
 **/*.log
 **/*.zip
