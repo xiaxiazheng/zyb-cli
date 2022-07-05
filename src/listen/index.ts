@@ -11,7 +11,10 @@ const listen = async () => {
   app.use(cors());
   const router = express.Router();
 
-  if (!(await isFileExist("./report.csv"))) {
+  // 这里用的是跑命令的地方的文件，不是用代码里的文件
+  const reportPath = resolve(process.cwd(), "./report.csv");
+  
+  if (!(await isFileExist(reportPath))) {
     console.log("运行错误，要先运行 zyb analysis 生成 report.csv");
     process.exit();
   }
@@ -19,7 +22,7 @@ const listen = async () => {
   // 调试：curl localhost:3000/api/table
   router.get("/table", (_req, res) => {
     // 读取小文件
-    readFile(resolve(__dirname, "../../report.csv"), "utf8", (err, data) => {
+    readFile(reportPath, "utf8", (err, data) => {
       if (err) {
         console.error(err);
         return;
@@ -34,8 +37,10 @@ const listen = async () => {
   });
 
   app.use("/api", router);
-
-  app.use(express.static("public")); // 监听 index.html
+  
+  // 用的是代码所在地的 public
+  app.use(express.static(path.resolve(__dirname, "../../public"))); // 监听 index.html
+  // 用的是代码执行地的 static
   app.use("/static", express.static("static")); // 监听新生成的静态资源目录
 
   const server = app.listen(3000, () => {

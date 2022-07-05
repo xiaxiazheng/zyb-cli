@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const fs_1 = require("fs");
+const path = require("path");
 const path_1 = require("path");
 const utils_1 = require("../utils");
 const isFileExist_1 = require("../utils/isFileExist");
@@ -10,14 +11,16 @@ const listen = async () => {
     const app = express();
     app.use(cors());
     const router = express.Router();
-    if (!(await isFileExist_1.default("./report.csv"))) {
+    // 这里用的是跑命令的地方的文件，不是用代码里的文件
+    const reportPath = path_1.resolve(process.cwd(), "./report.csv");
+    if (!(await isFileExist_1.default(reportPath))) {
         console.log("运行错误，要先运行 zyb analysis 生成 report.csv");
         process.exit();
     }
     // 调试：curl localhost:3000/api/table
     router.get("/table", (_req, res) => {
         // 读取小文件
-        fs_1.readFile(path_1.resolve(__dirname, "../../report.csv"), "utf8", (err, data) => {
+        fs_1.readFile(reportPath, "utf8", (err, data) => {
             if (err) {
                 console.error(err);
                 return;
@@ -30,7 +33,9 @@ const listen = async () => {
         res.send("关于此维基");
     });
     app.use("/api", router);
-    app.use(express.static("public")); // 监听 index.html
+    // 用的是代码所在地的 public
+    app.use(express.static(path.resolve(__dirname, "../../public"))); // 监听 index.html
+    // 用的是代码执行地的 static
     app.use("/static", express.static("static")); // 监听新生成的静态资源目录
     const server = app.listen(3000, () => {
         console.log("listen 3000");
