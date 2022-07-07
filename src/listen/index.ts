@@ -1,5 +1,5 @@
 import * as express from "express";
-import { readFile } from "fs";
+import { readdir, readFile } from "fs";
 import * as path from "path";
 import { resolve } from "path";
 import { shellExec } from "../utils";
@@ -13,7 +13,7 @@ const listen = async () => {
 
   // 这里用的是跑命令的地方的文件，不是用代码里的文件
   const reportPath = resolve(process.cwd(), "./report.csv");
-  
+
   if (!(await isFileExist(reportPath))) {
     console.log("运行错误，要先运行 zyb analysis 生成 report.csv");
     process.exit();
@@ -31,13 +31,22 @@ const listen = async () => {
     });
   });
 
+  // 调试：curl localhost:3000/api/folderList
+  router.get("/folderList", (_req, res) => {
+    const p = resolve(process.cwd(), "./static"); // 读取命令执行位置的文件夹
+
+    readdir(p, (_err, file) => {
+      res.send(file);
+    });
+  });
+
   // “关于页面”路由
   router.get("/about", (_req, res) => {
     res.send("关于此维基");
   });
 
   app.use("/api", router);
-  
+
   // 用的是代码所在地的 public
   app.use(express.static(path.resolve(__dirname, "../../public"))); // 监听 index.html
   // 用的是代码执行地的 static
@@ -50,12 +59,21 @@ const listen = async () => {
   // 在浏览器打开页面
   shellExec("open http://localhost:3000");
 
-  process.on("SIGTERM", () => {
-    // 还是无法退出
+  // 监听 ctrl + C or ctrl + D 关闭服务
+  const handleClose = () => {
+    console.log("Received kill signal, shutting down gracefully");
     server.close(() => {
       console.log("Process terminated");
+      process.exit();
     });
-  });
+
+    setTimeout(() => {
+      console.log("forcefully shutting down");
+      process.exit();
+    }, 1000);
+  };
+  process.on("SIGTERM", handleClose);
+  process.on("SIGINT", handleClose);
 
   return app;
 };

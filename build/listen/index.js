@@ -28,6 +28,13 @@ const listen = async () => {
             res.send(data.split("\n").filter((item) => item !== ""));
         });
     });
+    // 调试：curl localhost:3000/api/folderList
+    router.get("/folderList", (_req, res) => {
+        const p = path_1.resolve(process.cwd(), "./static"); // 读取命令执行位置的文件夹
+        fs_1.readdir(p, (_err, file) => {
+            res.send(file);
+        });
+    });
     // “关于页面”路由
     router.get("/about", (_req, res) => {
         res.send("关于此维基");
@@ -42,12 +49,20 @@ const listen = async () => {
     });
     // 在浏览器打开页面
     utils_1.shellExec("open http://localhost:3000");
-    process.on("SIGTERM", () => {
-        // 还是无法退出
+    // 监听 ctrl + C or ctrl + D 关闭服务
+    const handleClose = () => {
+        console.log("Received kill signal, shutting down gracefully");
         server.close(() => {
             console.log("Process terminated");
+            process.exit();
         });
-    });
+        setTimeout(() => {
+            console.log("forcefully shutting down");
+            process.exit();
+        }, 1000);
+    };
+    process.on("SIGTERM", handleClose);
+    process.on("SIGINT", handleClose);
     return app;
 };
 exports.default = listen;
