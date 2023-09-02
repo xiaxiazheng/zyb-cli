@@ -5,6 +5,7 @@ import clone from "./clone";
 import deploy from "./deploy";
 import listen from "./listen";
 import analysis from "./analysis";
+import filenames from "./batch-modity-filename";
 
 program.version(require("../package.json").version);
 
@@ -12,6 +13,12 @@ program
   .command("demo")
   .description("一个 demo") // 添加一个描述，在 --help 中展示
   .action(demo);
+
+program
+  .command("filenames")
+  .description("批量修改文件名 filenames") // 添加一个描述，在 --help 中展示
+  .action(filenames);
+
 
 program
   .command("clone")

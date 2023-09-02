@@ -7,11 +7,16 @@ const clone_1 = require("./clone");
 const deploy_1 = require("./deploy");
 const listen_1 = require("./listen");
 const analysis_1 = require("./analysis");
+const batch_modity_filename_1 = require("./batch-modity-filename");
 program.version(require("../package.json").version);
 program
     .command("demo")
     .description("一个 demo") // 添加一个描述，在 --help 中展示
     .action(demo_1.default);
+program
+    .command("filenames")
+    .description("批量修改文件名 filenames") // 添加一个描述，在 --help 中展示
+    .action(batch_modity_filename_1.default);
 program
     .command("clone")
     .description("克隆已有项目") // 添加一个描述，在 --help 中展示
