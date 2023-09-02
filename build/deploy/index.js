@@ -25,16 +25,16 @@ function deploy() {
         .then((answers) => {
         const { isBuild } = answers;
         if (isBuild === "Y" || isBuild === "y") {
-            index_1.logger.base(index_1.shellExec(`yarn build`));
+            index_1.logger.base((0, index_1.shellExec)(`yarn build`));
         }
         index_1.logger.base(shell.cd("../blogserver"));
-        index_1.logger.base(index_1.shellExec(`git pull`));
-        index_1.logger.base(index_1.shellExec(`rm -rf www`));
-        index_1.logger.base(index_1.shellExec(`mkdir www`));
-        index_1.logger.base(index_1.shellExec(`cp -rf ../reactblog/build/* www`));
-        index_1.logger.base(index_1.shellExec(`git add --all`));
-        index_1.logger.base(index_1.shellExec(`git commit -m "feat: 更新前端代码"`));
-        index_1.logger.base(index_1.shellExec(`git push`));
+        index_1.logger.base((0, index_1.shellExec)(`git pull`));
+        index_1.logger.base((0, index_1.shellExec)(`rm -rf www`));
+        index_1.logger.base((0, index_1.shellExec)(`mkdir www`));
+        index_1.logger.base((0, index_1.shellExec)(`cp -rf ../reactblog/build/* www`));
+        index_1.logger.base((0, index_1.shellExec)(`git add --all`));
+        index_1.logger.base((0, index_1.shellExec)(`git commit -m "feat: 更新前端代码"`));
+        index_1.logger.base((0, index_1.shellExec)(`git push`));
         process.exit(0);
     })
         .catch((err) => {

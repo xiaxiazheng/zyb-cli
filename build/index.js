@@ -1,12 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const program = require("commander");
+const demo_1 = require("./demo");
 const create_1 = require("./create");
 const clone_1 = require("./clone");
 const deploy_1 = require("./deploy");
 const listen_1 = require("./listen");
 const analysis_1 = require("./analysis");
 program.version(require("../package.json").version);
+program
+    .command("demo")
+    .description("一个 demo") // 添加一个描述，在 --help 中展示
+    .action(demo_1.default);
 program
     .command("clone")
     .description("克隆已有项目") // 添加一个描述，在 --help 中展示
@@ -19,6 +24,7 @@ program
     .command("deploy")
     .description("打包前端代码并更新，发到 server 去") // 添加一个描述，在 --help 中展示
     .action(deploy_1.default);
+// @ts-ignore
 program.command("listen").description("监听本地端口").action(listen_1.default);
 program
     .command("analysis")

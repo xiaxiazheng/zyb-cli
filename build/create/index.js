@@ -37,10 +37,10 @@ function create() {
         else {
             console.log(`正在 clone ${templateObjMap[projectName]} 项目，请稍等`);
             const remote = `https://github.com/xiaxiazheng/${templateObjMap[projectName]}.git`;
-            index_1.shellExec(`git clone ${remote} --depth=1`);
+            (0, index_1.shellExec)(`git clone ${remote} --depth=1`);
             shell.cd(`${templateObjMap[projectName]}`);
-            index_1.shellExec(`npm i`);
-            index_1.shellExec(`code .`);
+            (0, index_1.shellExec)(`npm i`);
+            (0, index_1.shellExec)(`code .`);
             index_1.logger.base("done");
         }
         process.exit();

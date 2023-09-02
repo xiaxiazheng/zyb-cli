@@ -13,10 +13,10 @@ const walkDir = async (params) => {
     const fileList = [];
     const walk = (dir) => {
         return new Promise((resolve, _reject) => {
-            fs_1.readdir(dir, (_err, file) => {
+            (0, fs_1.readdir)(dir, (_err, file) => {
                 file.forEach((name) => {
-                    const filePath = path_1.resolve(dir, name);
-                    const stat = fs_1.statSync(filePath);
+                    const filePath = (0, path_1.resolve)(dir, name);
+                    const stat = (0, fs_1.statSync)(filePath);
                     const obj = {
                         name,
                         dir,

@@ -8,14 +8,14 @@ const inquirer = require("inquirer");
 const split_by_month_1 = require("./split-by-month");
 const listen_1 = require("../listen");
 const analysis = async () => {
-    const reportPath = path_1.resolve(process.cwd(), "report.csv");
-    fs_1.writeFileSync(reportPath, "", "utf-8"); // 新建文件 或 覆盖原有文件为空
+    const reportPath = (0, path_1.resolve)(process.cwd(), "report.csv");
+    (0, fs_1.writeFileSync)(reportPath, "", "utf-8"); // 新建文件 或 覆盖原有文件为空
     // 遍历文件夹，获取所有文件
-    const { fileList } = await walkDir_1.default({
+    const { fileList } = await (0, walkDir_1.default)({
         handleFile: (obj) => {
             const { stat, name, dir: _dir, path } = obj;
             const time = dayjs(stat.birthtime).format("YYYY-MM-DD HH:mm:ss");
-            fs_1.appendFileSync(reportPath, `${name},${path},${time}\n`);
+            (0, fs_1.appendFileSync)(reportPath, `${name},${path},${time}\n`);
         },
         filterDirList: [".git", "node_modules", "build"],
     });
@@ -32,10 +32,10 @@ const analysis = async () => {
         .then((answers) => {
         const { choice } = answers;
         if (choice === "按月份分类文件") {
-            split_by_month_1.default(fileList, reportPath);
+            (0, split_by_month_1.default)(fileList, reportPath);
         }
         else if (choice === "网页查看分类结果") {
-            listen_1.default();
+            (0, listen_1.default)();
         }
         else {
             process.exit();

@@ -15,21 +15,21 @@ const SplitByMonth = (fileList, reportPath) => {
         }
     });
     // 覆盖报告文件
-    fs_1.writeFileSync(reportPath, "", "utf-8");
+    (0, fs_1.writeFileSync)(reportPath, "", "utf-8");
     //   创建新文件夹，按月份分类复制图片
     const newDir = "./static";
-    fs_1.mkdirSync(`${newDir}`);
+    (0, fs_1.mkdirSync)(`${newDir}`);
     Object.keys(map).forEach((item) => {
-        fs_1.mkdirSync(`${newDir}/${item}`);
+        (0, fs_1.mkdirSync)(`${newDir}/${item}`);
         map[item].forEach((file) => {
             // 新的静态资源的地址
             const staticPath = `${newDir}/${item}/${file.name}`;
             // 复制文件到新的静态资源文件夹
-            fs_1.copyFileSync(file.path, staticPath);
+            (0, fs_1.copyFileSync)(file.path, staticPath);
             // 分好类
             const { stat, name, dir: _dir, path } = file;
             const time = dayjs(stat.birthtime).format("YYYY-MM-DD HH:mm:ss");
-            fs_1.appendFileSync(reportPath, `${name},${staticPath},${path},${time}\n`);
+            (0, fs_1.appendFileSync)(reportPath, `${name},${staticPath},${path},${time}\n`);
         });
     });
     process.exit();

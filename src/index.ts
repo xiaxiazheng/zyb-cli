@@ -1,4 +1,5 @@
 import * as program from "commander";
+import demo from "./demo";
 import create from "./create";
 import clone from "./clone";
 import deploy from "./deploy";
@@ -6,6 +7,11 @@ import listen from "./listen";
 import analysis from "./analysis";
 
 program.version(require("../package.json").version);
+
+program
+  .command("demo")
+  .description("一个 demo") // 添加一个描述，在 --help 中展示
+  .action(demo);
 
 program
   .command("clone")
@@ -22,6 +28,7 @@ program
   .description("打包前端代码并更新，发到 server 去") // 添加一个描述，在 --help 中展示
   .action(deploy);
 
+// @ts-ignore
 program.command("listen").description("监听本地端口").action(listen);
 
 program

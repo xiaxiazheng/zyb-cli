@@ -11,7 +11,7 @@ interface IParams {
     handleFile?: (obj: FileType) => void;
     handleDir?: (obj: FileType) => void;
 }
-export declare type FileType = {
+export type FileType = {
     name: string;
     dir: string;
     path: string;

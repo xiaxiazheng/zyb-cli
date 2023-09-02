@@ -12,15 +12,15 @@ const listen = async () => {
     app.use(cors());
     const router = express.Router();
     // 这里用的是跑命令的地方的文件，不是用代码里的文件
-    const reportPath = path_1.resolve(process.cwd(), "./report.csv");
-    if (!(await isFileExist_1.default(reportPath))) {
+    const reportPath = (0, path_1.resolve)(process.cwd(), "./report.csv");
+    if (!(await (0, isFileExist_1.default)(reportPath))) {
         console.log("运行错误，要先运行 zyb analysis 生成 report.csv");
         process.exit();
     }
     // 调试：curl localhost:3000/api/table
     router.get("/table", (_req, res) => {
         // 读取小文件
-        fs_1.readFile(reportPath, "utf8", (err, data) => {
+        (0, fs_1.readFile)(reportPath, "utf8", (err, data) => {
             if (err) {
                 console.error(err);
                 return;
@@ -30,8 +30,8 @@ const listen = async () => {
     });
     // 调试：curl localhost:3000/api/folderList
     router.get("/folderList", (_req, res) => {
-        const p = path_1.resolve(process.cwd(), "./static"); // 读取命令执行位置的文件夹
-        fs_1.readdir(p, (_err, file) => {
+        const p = (0, path_1.resolve)(process.cwd(), "./static"); // 读取命令执行位置的文件夹
+        (0, fs_1.readdir)(p, (_err, file) => {
             res.send(file);
         });
     });
@@ -48,7 +48,7 @@ const listen = async () => {
         console.log("listen 3000");
     });
     // 在浏览器打开页面
-    utils_1.shellExec("open http://localhost:3000");
+    (0, utils_1.shellExec)("open http://localhost:3000");
     // 监听 ctrl + C or ctrl + D 关闭服务
     const handleClose = () => {
         console.log("Received kill signal, shutting down gracefully");
