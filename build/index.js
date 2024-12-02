@@ -5,7 +5,6 @@ const demo_1 = require("./demo");
 const create_1 = require("./create");
 const clone_1 = require("./clone");
 const deploy_1 = require("./deploy");
-const listen_1 = require("./listen");
 const analysis_1 = require("./analysis");
 const batch_modity_filename_1 = require("./batch-modity-filename");
 program.version(require("../package.json").version);
@@ -17,6 +16,12 @@ program
     .command("filenames")
     .description("批量修改文件名 filenames") // 添加一个描述，在 --help 中展示
     .action(batch_modity_filename_1.default);
+const train_1 = require("./train");
+program.version(require("../package.json").version);
+program
+    .command("train")
+    .description("火车相关")
+    .action(train_1.default);
 program
     .command("clone")
     .description("克隆已有项目") // 添加一个描述，在 --help 中展示
@@ -31,6 +36,7 @@ program
     .action(deploy_1.default);
 // @ts-ignore
 program.command("listen").description("监听本地端口").action(listen_1.default);
+// program.command("listen").description("监听本地端口").action(listen);
 program
     .command("analysis")
     .description("分析本地文件夹内容，并生成文件 report")

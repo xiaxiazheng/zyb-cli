@@ -6,6 +6,7 @@ import deploy from "./deploy";
 import listen from "./listen";
 import analysis from "./analysis";
 import filenames from "./batch-modity-filename";
+import train from './train';
 
 program.version(require("../package.json").version);
 
@@ -19,6 +20,10 @@ program
   .description("批量修改文件名 filenames") // 添加一个描述，在 --help 中展示
   .action(filenames);
 
+program
+  .command("train")
+  .description("火车相关")
+  .action(train);
 
 program
   .command("clone")
@@ -37,6 +42,7 @@ program
 
 // @ts-ignore
 program.command("listen").description("监听本地端口").action(listen);
+// program.command("listen").description("监听本地端口").action(listen);
 
 program
   .command("analysis")
